@@ -10,50 +10,89 @@ import Parse
 class ViewController: UIViewController {
 
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var signupMode = true
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+
+
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var rightButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
-    @IBAction func signupPressed(sender: AnyObject) {
+    @IBAction func topButtonPressed(sender: AnyObject) {
         if username.text != "" && password.text != "" {
             showActivityIndicator()
 
-            let user = PFUser()
-
-            user.username = username.text
-            user.password = password.text
-
             var errorMessage = "Plase try again later"
-            
-            user.signUpInBackgroundWithBlock({
-                (success, error) -> Void in
 
-                self.indicator.stopAnimating()
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            if signupMode {
+                let user = PFUser()
 
-                if success {
-                    // Signup successful
-                }
-                else {
-                    if let errorString = error!.userInfo["error"] as? String {
-                        errorMessage = errorString
+                user.username = username.text
+                user.password = password.text
+
+                user.signUpInBackgroundWithBlock({
+                    (success, error) -> Void in
+
+                    self.endActivity()
+
+                    if success {
+                        // Signup successful
                     }
+                    else {
+                        if let errorString = error!.userInfo["error"] as? String {
+                            errorMessage = errorString
+                        }
 
-                    self.showAlert("Error signing up", message: errorMessage)
-                }
-            })
+                        self.showAlert("Error signing up", message: errorMessage)
+                    }
+                })
+            }
+            else {
+                PFUser.logInWithUsernameInBackground(username.text!, password: password.text!, block: {
+                    (user, error) -> Void in
+
+                    self.endActivity()
+
+                    if user != nil {
+                        // Logged in
+                    }
+                    else {
+                        if let errorString = error!.userInfo["error"] as? String {
+                            errorMessage = errorString
+                        }
+
+                        self.showAlert("Error logging in", message: errorMessage)
+                    }
+                })
+            }
         }
         else {
             showAlert("Error in Form", message: "You must enter both a username and password.")
         }
     }
 
-    @IBAction func loginPressed(sender: AnyObject) {
+    @IBAction func rightButtonPressed(sender: AnyObject) {
+        if signupMode {
+            leftLabel.text = "Not Registered?"
+            topButton.setTitle("Log in", forState: .Normal)
+            rightButton.setTitle("Sign up", forState: .Normal)
+
+            signupMode = false
+        }
+        else {
+            leftLabel.text = "Already Registered?"
+            topButton.setTitle("Sign up", forState: .Normal)
+            rightButton.setTitle("Log in", forState: .Normal)
+
+            signupMode = true
+        }
     }
 
     func showAlert(title: String, message: String) {
@@ -82,6 +121,10 @@ class ViewController: UIViewController {
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     }
 
+    func endActivity() {
+        self.indicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
