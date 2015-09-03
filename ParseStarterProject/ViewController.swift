@@ -25,6 +25,12 @@ class ViewController: UIViewController {
 
     }
 
+    override func viewDidAppear(animated: Bool) {
+        if PFUser.currentUser() != nil {
+            performSegueWithIdentifier("login", sender: self)
+        }
+    }
+
     @IBAction func topButtonPressed(sender: AnyObject) {
         if username.text != "" && password.text != "" {
             showActivityIndicator()
@@ -43,7 +49,7 @@ class ViewController: UIViewController {
                     self.endActivity()
 
                     if success {
-                        // Signup successful
+                        self.performSegueWithIdentifier("login", sender: self)
                     }
                     else {
                         if let errorString = error!.userInfo["error"] as? String {
@@ -61,7 +67,7 @@ class ViewController: UIViewController {
                     self.endActivity()
 
                     if user != nil {
-                        // Logged in
+                        self.performSegueWithIdentifier("login", sender: self)
                     }
                     else {
                         if let errorString = error!.userInfo["error"] as? String {
@@ -125,6 +131,10 @@ class ViewController: UIViewController {
         self.indicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
+
+
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
