@@ -15,52 +15,21 @@ class TableViewController: UITableViewController {
     var userIDs     = [""]
     var isFollowing = ["" : false]
 
+    var refresher: UIRefreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let query = PFUser.query()
-        let myID  = (PFUser.currentUser()?.objectId)!
+        // Add a pull to refresh function
 
-        query?.findObjectsInBackgroundWithBlock({
-            (objects, error) -> Void in
+        refresher = UIRefreshControl()
 
-            if let users = objects {
-                self.userNames.removeAll()
-                self.userIDs.removeAll()
-                self.isFollowing.removeAll()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to Refresh")
+        refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
 
-                for object in users {
-                    if let user = object as? PFUser {
-                        if user.objectId != myID {
-                            self.userNames.append(user.username!)
-                            self.userIDs.append(user.objectId!)
+        tableView.addSubview(refresher)
 
-                            let query = PFQuery(className: "Relation")
-
-                            query.whereKey("follower", equalTo: myID)
-                            query.whereKey("following", equalTo: user.objectId!)
-
-                            query.findObjectsInBackgroundWithBlock({
-                                (objects, error) -> Void in
-
-                                if let objects = objects {
-                                    if objects.count > 0 {
-                                        self.isFollowing[user.objectId!] = true
-                                    }
-                                    else {
-                                        self.isFollowing[user.objectId!] = false
-                                    }
-                                }
-
-                                if self.isFollowing.count == self.userNames.count {
-                                    self.tableView.reloadData()
-                                }
-                            })
-                        }
-                    }
-                }
-            }
-        })
+        reloadUsersFromParse()
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,5 +100,52 @@ class TableViewController: UITableViewController {
                 }
             })
         }
+    }
+
+    func reloadUsersFromParse() {
+        let query = PFUser.query()
+        let myID  = (PFUser.currentUser()?.objectId)!
+
+        query?.findObjectsInBackgroundWithBlock({
+            (objects, error) -> Void in
+
+            if let users = objects {
+                self.userNames.removeAll()
+                self.userIDs.removeAll()
+                self.isFollowing.removeAll()
+
+                for object in users {
+                    if let user = object as? PFUser {
+                        if user.objectId != myID {
+                            self.userNames.append(user.username!)
+                            self.userIDs.append(user.objectId!)
+
+                            let query = PFQuery(className: "Relation")
+
+                            query.whereKey("follower", equalTo: myID)
+                            query.whereKey("following", equalTo: user.objectId!)
+
+                            query.findObjectsInBackgroundWithBlock({
+                                (objects, error) -> Void in
+
+                                if let objects = objects {
+                                    self.isFollowing[user.objectId!] = (objects.count > 0)
+                                }
+
+                                if self.isFollowing.count == self.userNames.count {
+                                    self.tableView.reloadData()
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    func refresh() {
+        reloadUsersFromParse()
+
+        self.refresher.endRefreshing()
     }
 }
