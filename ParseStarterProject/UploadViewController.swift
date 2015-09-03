@@ -11,11 +11,17 @@ import Parse
 
 class UploadViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    var indicator = UIActivityIndicatorView()
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var caption: UITextField!
 
+    @IBOutlet weak var uploadButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        uploadButton.enabled = false
     }
 
     @IBAction func selectPressed(sender: AnyObject) {
@@ -32,10 +38,11 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         self.dismissViewControllerAnimated(true, completion: nil)
 
         self.imageView.image = image
+        uploadButton.enabled = true
     }
 
     @IBAction func uploadPressed(sender: AnyObject) {
-        let imageData   = UIImagePNGRepresentation(self.imageView.image!)
+        let imageData   = UIImagePNGRepresentation(imageView.image!)
         let imageFile   = PFFile(name: "uploaded.png", data: imageData!)
         let photo       = PFObject(className: "Photo")
 
@@ -43,9 +50,49 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         photo["caption"] = caption.text
         photo["image"]   = imageFile
 
-        photo.saveInBackground()
+        indicator = UIActivityIndicatorView(frame: self.view.frame)
+
+        indicator.center = self.view.center
+        indicator.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = .Gray
+
+        self.view.addSubview(indicator)
+
+        indicator.startAnimating()
+
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+        photo.saveInBackgroundWithBlock {
+            (success, error) -> Void in
+
+            self.indicator.stopAnimating()
+
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
+            if error == nil {
+                self.imageView.image = UIImage(named: "blank_image.png")
+                self.caption.text = ""
+                self.showAlert("Upload Successful", message: "Your photo was uploaded successfully")
+            }
+            else {
+                self.showAlert("Upload Failed", message: (error?.localizedDescription)!)
+            }
+        }
     }
 
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
+            (action) -> Void in
+
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 
 
 

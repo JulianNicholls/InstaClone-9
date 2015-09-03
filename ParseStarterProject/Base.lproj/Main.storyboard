@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="555.5" y="405.5"/>
         </scene>
-        <!--Add an Image-->
+        <!--Upload Image-->
         <scene sceneID="AIN-QJ-pyf">
             <objects>
-                <viewController title="Add an Image" id="0fh-7u-f05" customClass="UploadViewController" customModule="InstaClone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Upload Image" id="0fh-7u-f05" customClass="UploadViewController" customModule="InstaClone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Twd-cR-8hw"/>
                         <viewControllerLayoutGuide type="bottom" id="hbv-6W-AKt"/>
@@ -54,12 +54,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="blank_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="5sT-AM-ZJy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="299"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="299" id="0Xe-ZM-7oK"/>
-                                </constraints>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BhJ-5R-k9K">
                                 <rect key="frame" x="20" y="409" width="335" height="30"/>
                                 <constraints>
@@ -90,6 +84,12 @@
                                     <action selector="uploadPressed:" destination="0fh-7u-f05" eventType="touchUpInside" id="J19-rc-9W8"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="blank_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="5sT-AM-ZJy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="299"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="0Xe-ZM-7oK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -109,6 +109,7 @@
                     <connections>
                         <outlet property="caption" destination="BhJ-5R-k9K" id="NMx-7w-bzr"/>
                         <outlet property="imageView" destination="5sT-AM-ZJy" id="VIN-rg-6V2"/>
+                        <outlet property="uploadButton" destination="31S-PQ-Ogf" id="1sm-HM-Cpw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQz-Q7-KjT" userLabel="First Responder" sceneMemberID="firstResponder"/>

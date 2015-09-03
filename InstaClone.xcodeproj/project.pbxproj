@@ -22,7 +22,7 @@
 		81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81801A49E10C00E65899 /* ParseUI.framework */; };
 		B92FC2101B9842D200887FC5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FC20F1B9842D200887FC5 /* TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B92FC2121B989A8B00887FC5 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FC2111B989A8B00887FC5 /* UploadViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B92FC2141B98A1AB00887FC5 /* blank_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B92FC2131B98A1AB00887FC5 /* blank_image.png */; settings = {ASSET_TAGS = (); }; };
+		B92FC2161B98A8BD00887FC5 /* blank_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B92FC2151B98A8BD00887FC5 /* blank_image.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +44,7 @@
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		B92FC20F1B9842D200887FC5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B92FC2111B989A8B00887FC5 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
-		B92FC2131B98A1AB00887FC5 /* blank_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_image.png; sourceTree = "<group>"; };
+		B92FC2151B98A8BD00887FC5 /* blank_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +70,7 @@
 		81BA813C1A49DA1800E65899 = {
 			isa = PBXGroup;
 			children = (
+				B92FC2151B98A8BD00887FC5 /* blank_image.png */,
 				81BA81471A49DA1800E65899 /* InstaClone */,
 				81BA816A1A49DB5600E65899 /* Frameworks */,
 				81BA81461A49DA1800E65899 /* Products */,
@@ -92,7 +93,6 @@
 				B92FC2111B989A8B00887FC5 /* UploadViewController.swift */,
 				B92FC20F1B9842D200887FC5 /* TableViewController.swift */,
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
-				B92FC2131B98A1AB00887FC5 /* blank_image.png */,
 				81BA81511A49DA1800E65899 /* Images.xcassets */,
 				81BA81481A49DA1800E65899 /* Supporting Files */,
 			);
@@ -194,7 +194,7 @@
 			files = (
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
 				81BA81521A49DA1800E65899 /* Images.xcassets in Resources */,
-				B92FC2141B98A1AB00887FC5 /* blank_image.png in Resources */,
+				B92FC2161B98A8BD00887FC5 /* blank_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
