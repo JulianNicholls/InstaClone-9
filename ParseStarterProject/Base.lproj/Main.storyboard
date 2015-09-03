@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Users-->
@@ -28,12 +29,91 @@
                             <outlet property="delegate" destination="VlM-AT-TFc" id="9ub-Zs-hLT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Users" id="WnN-vh-bJ7"/>
+                    <navigationItem key="navigationItem" title="Users" id="WnN-vh-bJ7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LmB-8W-cBb">
+                            <connections>
+                                <segue destination="0fh-7u-f05" kind="show" id="wUQ-hD-iNF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lKA-Zp-YV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="405.5"/>
+        </scene>
+        <!--Add an Image-->
+        <scene sceneID="AIN-QJ-pyf">
+            <objects>
+                <viewController title="Add an Image" id="0fh-7u-f05" customClass="UploadViewController" customModule="InstaClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Twd-cR-8hw"/>
+                        <viewControllerLayoutGuide type="bottom" id="hbv-6W-AKt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="he6-vG-uDl" customClass="Up">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="blank_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="5sT-AM-ZJy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="299"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="0Xe-ZM-7oK"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BhJ-5R-k9K">
+                                <rect key="frame" x="20" y="409" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bbb-de-5FH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-Ke-tVj">
+                                <rect key="frame" x="266" y="371" width="89" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="Lh9-dw-AwC"/>
+                                    <constraint firstAttribute="height" constant="30" id="NNd-Sk-ccF"/>
+                                </constraints>
+                                <state key="normal" title="Select Image"/>
+                                <connections>
+                                    <action selector="selectPressed:" destination="0fh-7u-f05" eventType="touchUpInside" id="He4-OU-gKg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31S-PQ-Ogf">
+                                <rect key="frame" x="140" y="447" width="95" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="RxK-fP-oE9"/>
+                                    <constraint firstAttribute="height" constant="30" id="dDU-SD-xFg"/>
+                                </constraints>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadPressed:" destination="0fh-7u-f05" eventType="touchUpInside" id="J19-rc-9W8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BhJ-5R-k9K" firstAttribute="leading" secondItem="he6-vG-uDl" secondAttribute="leadingMargin" id="0BX-WE-2iv"/>
+                            <constraint firstItem="31S-PQ-Ogf" firstAttribute="centerX" secondItem="he6-vG-uDl" secondAttribute="centerX" id="75X-fE-gdX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5sT-AM-ZJy" secondAttribute="trailing" constant="-20" id="BPg-Lc-WTs"/>
+                            <constraint firstItem="PbL-Ke-tVj" firstAttribute="trailing" secondItem="he6-vG-uDl" secondAttribute="trailingMargin" id="HDr-db-UQZ"/>
+                            <constraint firstItem="BhJ-5R-k9K" firstAttribute="top" secondItem="PbL-Ke-tVj" secondAttribute="bottom" constant="8" id="arD-g1-kBd"/>
+                            <constraint firstItem="BhJ-5R-k9K" firstAttribute="trailing" secondItem="he6-vG-uDl" secondAttribute="trailingMargin" id="fpu-WS-fCq"/>
+                            <constraint firstItem="5sT-AM-ZJy" firstAttribute="top" secondItem="Twd-cR-8hw" secondAttribute="bottom" id="h9Z-Di-lzk"/>
+                            <constraint firstItem="31S-PQ-Ogf" firstAttribute="top" secondItem="BhJ-5R-k9K" secondAttribute="bottom" constant="8" id="hD9-1n-tac"/>
+                            <constraint firstItem="PbL-Ke-tVj" firstAttribute="top" secondItem="5sT-AM-ZJy" secondAttribute="bottom" constant="8" id="twg-PE-l7n"/>
+                            <constraint firstItem="5sT-AM-ZJy" firstAttribute="leading" secondItem="he6-vG-uDl" secondAttribute="leadingMargin" constant="-20" id="zuh-hD-uQB"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="caption" destination="BhJ-5R-k9K" id="NMx-7w-bzr"/>
+                        <outlet property="imageView" destination="5sT-AM-ZJy" id="VIN-rg-6V2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zQz-Q7-KjT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971.5" y="405.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CKh-cO-HaG">
@@ -182,4 +262,7 @@
             <point key="canvasLocation" x="-345.5" y="405.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="blank_image.png" width="406" height="405"/>
+    </resources>
 </document>
