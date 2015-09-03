@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
 
     var userNames   = [""]
     var userIDs     = [""]
-    var isFollowing = [false]
+    var isFollowing = ["" : false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +45,10 @@ class TableViewController: UITableViewController {
 
                                 if let objects = objects {
                                     if objects.count > 0 {
-                                        self.isFollowing.append(true)
+                                        self.isFollowing[user.objectId!] = true
                                     }
                                     else {
-                                        self.isFollowing.append(false)
+                                        self.isFollowing[user.objectId!] = false
                                     }
                                 }
 
@@ -85,7 +85,9 @@ class TableViewController: UITableViewController {
 
         cell.textLabel?.text = userNames[indexPath.row]
 
-        if isFollowing[indexPath.row] {
+        let followedID = userIDs[indexPath.row]
+
+        if isFollowing[followedID] == true {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
 
@@ -93,10 +95,14 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Clicked " + userNames[indexPath.row])
+        let followedID = userIDs[indexPath.row]
 
-        if !isFollowing[indexPath.row] {
-            isFollowing[indexPath.row] = true
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+
+        if isFollowing[followedID] == false {   // Not following
+            isFollowing[followedID] = true
+
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
 
             let relation = PFObject(className: "Relation")
 
@@ -106,7 +112,9 @@ class TableViewController: UITableViewController {
             relation.saveInBackground()
         }
         else {    // Following currently
-            isFollowing[indexPath.row] = false
+            isFollowing[followedID] = false
+
+            cell.accessoryType = UITableViewCellAccessoryType.None
 
             let query = PFQuery(className: "Relation")
 
@@ -123,7 +131,5 @@ class TableViewController: UITableViewController {
                 }
             })
         }
-
-        self.tableView.reloadData()
     }
 }
