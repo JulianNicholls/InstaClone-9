@@ -23,6 +23,8 @@
 		B92FC2101B9842D200887FC5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FC20F1B9842D200887FC5 /* TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B92FC2121B989A8B00887FC5 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FC2111B989A8B00887FC5 /* UploadViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B92FC2161B98A8BD00887FC5 /* blank_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B92FC2151B98A8BD00887FC5 /* blank_image.png */; settings = {ASSET_TAGS = (); }; };
+		B9E1E85E1B99D8E100DE708A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E1E85D1B99D8E100DE708A /* TableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		B9E1E8601B99DC4F00DE708A /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E1E85F1B99DC4F00DE708A /* FeedTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		B92FC20F1B9842D200887FC5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B92FC2111B989A8B00887FC5 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		B92FC2151B98A8BD00887FC5 /* blank_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_image.png; sourceTree = "<group>"; };
+		B9E1E85D1B99D8E100DE708A /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B9E1E85F1B99DC4F00DE708A /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			children = (
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
+				B9E1E85D1B99D8E100DE708A /* TableViewCell.swift */,
+				B9E1E85F1B99DC4F00DE708A /* FeedTableViewController.swift */,
 				B92FC2111B989A8B00887FC5 /* UploadViewController.swift */,
 				B92FC20F1B9842D200887FC5 /* TableViewController.swift */,
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
@@ -222,6 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9E1E85E1B99D8E100DE708A /* TableViewCell.swift in Sources */,
+				B9E1E8601B99DC4F00DE708A /* FeedTableViewController.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				B92FC2121B989A8B00887FC5 /* UploadViewController.swift in Sources */,
 				B92FC2101B9842D200887FC5 /* TableViewController.swift in Sources */,

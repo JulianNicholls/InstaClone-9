@@ -104,7 +104,7 @@ class TableViewController: UITableViewController {
 
     func reloadUsersFromParse() {
         let query = PFUser.query()
-        let myID  = (PFUser.currentUser()?.objectId)!
+        let myID  = PFUser.currentUser()?.objectId
 
         query?.findObjectsInBackgroundWithBlock({
             (objects, error) -> Void in
@@ -122,7 +122,7 @@ class TableViewController: UITableViewController {
 
                             let query = PFQuery(className: "Relation")
 
-                            query.whereKey("follower", equalTo: myID)
+                            query.whereKey("follower", equalTo: myID!)
                             query.whereKey("following", equalTo: user.objectId!)
 
                             query.findObjectsInBackgroundWithBlock({

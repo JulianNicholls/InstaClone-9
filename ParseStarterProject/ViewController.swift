@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
 
-
     @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightButton: UIButton!
@@ -26,7 +25,7 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
-        if PFUser.currentUser() != nil {
+        if PFUser.currentUser()?.objectId != nil {
             performSegueWithIdentifier("login", sender: self)
         }
     }
